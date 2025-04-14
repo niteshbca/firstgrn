@@ -1,0 +1,152 @@
+1. install global dependencies:-
+  1.sudo apt update
+  2.sudo apt upgrade -y
+install nodejs and npm
+  4.curl -fsSL https://deb.nodesource.com/setup_20.x | sudo      bash -
+  5.sudo apt-get install -y nodejs
+  6.sudo apt install git
+  7.sudo apt install git -y 
+
+2.mongo db:-
+   1.sudo apt-get install gnupg curl
+   2.
+curl -fsSL https://www.mongodb.org/static/pgp/server-8.0.asc | \
+   sudo gpg -o /usr/share/keyrings/mongodb-server-8.0.gpg \
+   --dearmor
+   3.echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+   4.sudo apt-get update
+   5.sudo apt-get install -y mongodb-org
+   6.mongod --version
+
+
+
+
+b. frontend
+{.env}
+npm install
+npm run build
+sudo apt install nginx -y
+sudo nano /etc/nginx/sites-available/default
+
+server{
+    listen 80;
+    server_name bespokebytes.solutions 54.224.113.222;
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+	proxy_set_header Host $host;
+	proxy_cache_bypass $http_upgrade;
+            }
+}
+
+ 
+
+
+sudo nginx -t
+sudo systemctl restart nginx
+pm2 start npm --name frontend -- start
+
+
+
+
+
+
+backend:-
+1.sudo apt update
+sudo apt install nodejs
+sudo apt install npm
+
+2.node -v
+npm -v
+
+3.npm install
+4. echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+echo "deb [ arch=amd64,arm64 signed-by=/usr/share/keyrings/mongodb-server-8.0.gpg ] https://repo.mongodb.org/apt/ubuntu noble/mongodb-org/8.0 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-8.0.list
+
+5.sudo systemctl start mongod
+6.sudo systemctl enable mongod
+7. sudo npm install -g pm2
+8. pm2 start server.js --name backend
+9. nano .env
+10. pm2 startup
+2 pm2 save
+         pm2 list
+         pm2 stop higinbackend
+         pm2 stop 0
+         pm2 delete higinbackend
+
+
+
+
+
+
+
+
+
+make sure node version matchase the local...otherwise...use nvm
+
+   1.curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+source ~/.bashrc
+
+2.nvm install 18
+
+3.nvm use 18
+4.npm cache clean --force
+
+5.npm install
+
+6. change in Openssl
+   export NODE_OPTIONS=--openssl-legacy-provider
+npm run build
+ or    ..."scripts": {
+  "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build"
+}
+
+
+== completely remove nginx:-
+   1.sudo systemctl stop nginx
+
+   2.sudo apt purge nginx nginx-common nginx-full
+    3.sudo rm -rf /etc/nginx
+
+    4.sudo rm -rf /var/log/nginx
+    5.sudo rm -rf /var/lib/nginx
+
+     6.sudo apt autoremove
+       7.systemctl status nginx
+
+
+
+
+
+
+
+
+
+uninstall and then install nginx
+
+sudo systemctl stop nginx
+sudo apt-get purge nginx nginx-common nginx-full -y
+sudo apt-get autoremove -y
+
+sudo rm -rf /etc/nginx
+sudo rm -rf /var/www/html
+sudo rm -rf /var/log/nginx
+sudo apt-get update
+sudo apt-get install nginx -y
+
+sudo systemctl start nginx
+
+sudo systemctl enable nginx
+sudo systemctl status nginx
+
+
+
+
+
+
+
+
+
